@@ -23,14 +23,16 @@ import Card from './Card'
 const MainComp = () => {
 
     const [search, setSearch] = useState('');
-    const [bookData, setBookData] = useState([])
+    const [bookData, setBookData] = useState([]);
+    const [loading, setLoading] = useState('')
 
 
     const searchBook = async (e) => {
         if (e.key === 'Enter') {
             try {
+                setLoading('Loading...')
                 const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
-
+                setLoading('')
                 setBookData(items)
             } catch (error) {
                 console.log(error);
@@ -45,8 +47,9 @@ const MainComp = () => {
 
     const handleClick = async () => {
         try {
+            setLoading('Loading...')
             const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
-
+            setLoading('')
             setBookData(items)
         } catch (error) {
             console.log(error);
@@ -75,6 +78,8 @@ const MainComp = () => {
                     <img src="./images/img2.png" alt="child-img" />
                 </div>
             </div>
+
+            <h2 style={{ marginTop: '15px', textAlign: 'center', color: 'white' }}>{loading}</h2>
             <div className="container">
                 <Card book={bookData} />
 

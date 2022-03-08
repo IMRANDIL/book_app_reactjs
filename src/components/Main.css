@@ -15,6 +15,16 @@ body{
     background-color: var(--primary-color);
 }
 
+
+
+*::-webkit-scrollbar{
+    width: 8px;
+    background-color: grey;
+    z-index: 22;
+  }
+
+
+
 html{
     font-size: 75.5%;
 }
@@ -26,6 +36,7 @@ html{
     box-shadow: 0 5px 10px var(--secondary-color);
     display: flex;
     align-items: center;
+   
     position: relative;
 }
 
@@ -52,7 +63,7 @@ html{
 }
 
 .row2 h2{
-    font-size: 3rem;
+    font-size: 3vw;
     margin-top: 20px;
     margin-bottom: 15px;
 }
@@ -64,7 +75,7 @@ html{
 
 
 .row1 h1{
-    font-size: 3rem;
+    font-size: 3vw;
     text-align: center;
     margin-left: 35px;
     font-family: 'Bodoni Moda', serif;
@@ -243,4 +254,106 @@ flex-direction: column;
     margin-top: 2rem;
     text-align: justify;
     font-size: 13px;
+ 
+
+ 
+}
+
+
+@media screen and (max-width:450px){
+    .header{
+        flex-direction: column;
+        overflow: hidden;
+     
+       
+    }
+
+    .header::before{
+        background: none;
+    }
+
+    .row2{
+        right: 0px;
+        left: 0px;
+    }
+
+
+    .row2 img{
+        width: 307px !important;
+        margin-top: 50px;
+      
+       
+       
+    }
+
+    .search input{
+        width: 235px;
+    }
+
+    .row1 h1{
+       display: none;
+    }
+
+    .row2 h2{
+        font-size: 4vw;
+    }
+
+    .info h1{
+        font-size: 3vw;
+    }
+
+    .overlay-inner{
+        width: 85% !important;
+        height: 70% !important;
+    }
+}
+
+
+
+
+@media screen and (max-width:940px){
+
+    .row2 img{
+        width: 370px;
+      
+      
+       
+       
+    }
+
+
+    .row2{
+        right: 0px;
+        left: 0px;
+    }
+
+
+    .row1 h1{
+        display: none;
+     }
+
+     .header::before{
+        background: none;
+    }
+
+    .overlay-inner{
+        width: 60%;
+        height: 83%;
+    }
+}
+
+
+
+
+
+
+@media screen and (max-width:1140px){
+    .row2 img{
+        width: 350px;
+      
+      
+       
+       
+    }
+
 }
