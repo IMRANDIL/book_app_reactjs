@@ -2,8 +2,7 @@ import React from 'react'
 
 import './Main.css'
 
-import { FaSearch } from "react-icons/fa";
-
+import { FcSearch } from 'react-icons/fc'
 
 const MainComp = () => {
     return (
@@ -19,8 +18,8 @@ const MainComp = () => {
                     <h2>Find Your Favourite Book</h2>
                     <div className="search">
                         <input type="text" placeholder='Search Your Book...' />
-                        {FaSearch}
-                        <button ><i>{FaSearch}</i></button>
+
+                        <button>{<FcSearch />}</button>
                     </div>
                 </div>
             </div>
