@@ -198,6 +198,8 @@ flex-direction: column;
     border: none;
     font-size: 17px;
     background-color: transparent;
+    cursor: pointer;
+    z-index: 2500;
 }
 
 

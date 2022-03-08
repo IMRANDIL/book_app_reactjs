@@ -30,7 +30,7 @@ const MainComp = () => {
         if (e.key === 'Enter') {
             try {
                 const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
-                console.log(items);
+
                 setBookData(items)
             } catch (error) {
                 console.log(error);
@@ -40,6 +40,17 @@ const MainComp = () => {
 
 
 
+    }
+
+
+    const handleClick = async () => {
+        try {
+            const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
+
+            setBookData(items)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -59,7 +70,7 @@ const MainComp = () => {
                     <div className="search">
                         <input type="text" placeholder='Search Your Book...' value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={searchBook} />
 
-                        <button><i>{<FcSearch />}</i></button>
+                        <button onClick={handleClick}>{<FcSearch />}</button>
                     </div>
                     <img src="./images/img2.png" alt="child-img" />
                 </div>

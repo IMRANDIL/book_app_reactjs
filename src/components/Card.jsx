@@ -7,13 +7,22 @@ import Modal from './Modal';
 
 const Card = ({ book }) => {
 
-
+    let bookItema;
     const [show, setShow] = useState(false);
 
     const [Item, setItem] = useState();
 
 
+    const handleClick = () => {
+        setItem(bookItema);
+        setShow(true)
+    }
 
+
+    const handleClose = () => {
+        setItem();
+        setShow(false)
+    }
 
 
 
@@ -25,10 +34,10 @@ const Card = ({ book }) => {
             {book.map((bookItem) => {
                 let thumbnail = bookItem.volumeInfo.imageLinks && bookItem.volumeInfo.imageLinks.smallThumbnail;
                 let amount = bookItem.saleInfo.listPrice && bookItem.saleInfo.listPrice.amount
-
+                bookItema = bookItem;
                 return (
-                    < div key={bookItem.id} onClick={() => { setShow(true); setItem(bookItem) }}>
-                        <div className="card" >
+                    < div key={bookItem.id} >
+                        <div className="card" onClick={handleClick}>
                             <img src={thumbnail ? thumbnail : 'https://via.placeholder.com/200'} alt="book-img" />
 
                             <div className="bottom">
@@ -38,7 +47,7 @@ const Card = ({ book }) => {
                             </div>
 
                         </div>
-                        <Modal show={show} bookItem={Item} setShow={setShow} />
+                        <Modal show={show} bookItem={Item} onclose={handleClose} />
                     </div>
                 )
             })}

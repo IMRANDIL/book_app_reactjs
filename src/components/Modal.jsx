@@ -9,7 +9,7 @@ import { FaTimesCircle } from 'react-icons/fa'
 
 
 
-const Modal = ({ show, bookItem }) => {
+const Modal = ({ show, bookItem, onclose }) => {
 
 
     if (!show) {
@@ -23,10 +23,10 @@ const Modal = ({ show, bookItem }) => {
 
     return (
         <>
-            <div className='overlay'>
+            <div className='overlay' onClick={onclose}>
 
                 <div className="overlay-inner">
-                    <button className="close" ><i><FaTimesCircle /></i></button>
+                    <button className="close" onClick={onclose}><FaTimesCircle /></button>
 
 
                     <div className="inner-box">
