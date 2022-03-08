@@ -1,11 +1,48 @@
-import React from 'react'
-
-
+import React, { useState } from 'react';
+import axios from 'axios'
 
 import { FcSearch } from 'react-icons/fc'
 import Card from './Card'
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const MainComp = () => {
+
+    const [search, setSearch] = useState('')
+
+
+    const searchBook = async (e) => {
+        if (e.key === 'Enter') {
+            try {
+                const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}`);
+                console.log(items);
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+
+
+
+    }
+
+
+
+
     return (
         <>
 
@@ -18,7 +55,7 @@ const MainComp = () => {
                 <div className="row2">
                     <h2>Find Your Favourite Book</h2>
                     <div className="search">
-                        <input type="text" placeholder='Search Your Book...' />
+                        <input type="text" placeholder='Search Your Book...' value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={searchBook} />
 
                         <button><i>{<FcSearch />}</i></button>
                     </div>
@@ -27,6 +64,18 @@ const MainComp = () => {
             </div>
             <div className="container">
                 <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+
             </div>
 
         </>
