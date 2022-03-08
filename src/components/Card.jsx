@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from './Modal';
 
 
@@ -6,6 +6,19 @@ import Modal from './Modal';
 
 
 const Card = ({ book }) => {
+
+
+    const [show, setShow] = useState(false);
+
+    const [Item, setItem] = useState();
+
+
+
+
+
+
+
+
     return (
         <>
 
@@ -14,8 +27,8 @@ const Card = ({ book }) => {
                 let amount = bookItem.saleInfo.listPrice && bookItem.saleInfo.listPrice.amount
 
                 return (
-                    <div key={bookItem.id}>
-                        <div className="card">
+                    < div key={bookItem.id} onClick={() => { setShow(true); setItem(bookItem) }}>
+                        <div className="card" >
                             <img src={thumbnail ? thumbnail : 'https://via.placeholder.com/200'} alt="book-img" />
 
                             <div className="bottom">
@@ -25,7 +38,7 @@ const Card = ({ book }) => {
                             </div>
 
                         </div>
-                        <Modal />
+                        <Modal show={show} bookItem={Item} setShow={setShow} />
                     </div>
                 )
             })}
