@@ -36,7 +36,7 @@ const Card = ({ book }) => {
                 let amount = bookItem.saleInfo.listPrice && bookItem.saleInfo.listPrice.amount
                 bookItema = bookItem;
                 return (
-                    < div key={bookItem.id} >
+                    < div key={bookItem.id} style={{ cursor: 'pointer' }}>
                         <div className="card" onClick={handleClick}>
                             <img src={thumbnail ? thumbnail : 'https://via.placeholder.com/200'} alt="book-img" />
 
