@@ -1,4 +1,5 @@
 import React from 'react'
+import Modal from './Modal';
 
 
 
@@ -10,7 +11,7 @@ const Card = ({ book }) => {
 
             {book.map((bookItem) => {
                 let thumbnail = bookItem.volumeInfo.imageLinks && bookItem.volumeInfo.imageLinks.smallThumbnail;
-
+                let amount = bookItem.saleInfo.listPrice && bookItem.saleInfo.listPrice.amount
 
                 return (
                     <div key={bookItem.id}>
@@ -20,10 +21,11 @@ const Card = ({ book }) => {
                             <div className="bottom">
 
                                 <h3 className="title">{bookItem.volumeInfo.title}</h3>
-                                <p className="amount">&#8377;3698</p>
+                                <p className="amount">&#8377;{amount || 3000}</p>
                             </div>
 
                         </div>
+                        <Modal />
                     </div>
                 )
             })}

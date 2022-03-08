@@ -29,7 +29,7 @@ const MainComp = () => {
     const searchBook = async (e) => {
         if (e.key === 'Enter') {
             try {
-                const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}`);
+                const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
                 console.log(items);
                 setBookData(items)
             } catch (error) {
