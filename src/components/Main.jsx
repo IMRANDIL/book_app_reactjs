@@ -1,8 +1,9 @@
 import React from 'react'
 
-import './Main.css'
+
 
 import { FcSearch } from 'react-icons/fc'
+import Card from './Card'
 
 const MainComp = () => {
     return (
@@ -19,9 +20,13 @@ const MainComp = () => {
                     <div className="search">
                         <input type="text" placeholder='Search Your Book...' />
 
-                        <button>{<FcSearch />}</button>
+                        <button><i>{<FcSearch />}</i></button>
                     </div>
+                    <img src="./images/img2.png" alt="child-img" />
                 </div>
+            </div>
+            <div className="container">
+                <Card />
             </div>
 
         </>

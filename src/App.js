@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './components/Main.css';
 
 import MainComp from './components/Main';
 
