@@ -22,7 +22,8 @@ import Card from './Card'
 
 const MainComp = () => {
 
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
+    const [bookData, setBookData] = useState([])
 
 
     const searchBook = async (e) => {
@@ -30,6 +31,7 @@ const MainComp = () => {
             try {
                 const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}`);
                 console.log(items);
+                setBookData(items)
             } catch (error) {
                 console.log(error);
             }
@@ -63,18 +65,9 @@ const MainComp = () => {
                 </div>
             </div>
             <div className="container">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <Card book={bookData} />
+
+
 
             </div>
 
