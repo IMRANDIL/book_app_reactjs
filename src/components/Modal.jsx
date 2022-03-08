@@ -23,7 +23,7 @@ const Modal = ({ show, bookItem, onclose }) => {
 
     return (
         <>
-            <div className='overlay' onClick={onclose}>
+            <div className='overlay' >
 
                 <div className="overlay-inner">
                     <button className="close" onClick={onclose}><FaTimesCircle /></button>
@@ -37,7 +37,7 @@ const Modal = ({ show, bookItem, onclose }) => {
 
                             <h4>{bookItem.volumeInfo.publisher} <span>{bookItem.volumeInfo.publishedDate}</span></h4><br />
 
-                            <a href={bookItem.volumeInfo.previewLink}><button>More</button></a>
+                            <a href={bookItem.volumeInfo.previewLink} target='_blank' rel="noreferrer"><button>More</button></a>
 
 
 
