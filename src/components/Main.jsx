@@ -26,6 +26,7 @@ const MainComp = () => {
     const [bookData, setBookData] = useState([]);
     const [loading, setLoading] = useState('');
     const [error, setError] = useState('');
+    const [empty, setisEmpty] = useState('')
 
 
     const searchBook = async (e) => {
@@ -35,11 +36,16 @@ const MainComp = () => {
                 if (!search) {
                     return setError('Please pass the key')
                 }
+
+
                 setLoading('Loading...')
                 const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
                 setLoading('')
                 setError('')
-                setBookData(items)
+                setBookData(items);
+                if (bookData.length === 0) {
+                    return setisEmpty('No such book exists!')
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -56,11 +62,18 @@ const MainComp = () => {
             if (!search) {
                 return setError('Please pass the key')
             }
+
+
             setLoading('Loading...')
             const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
             setLoading('');
-            setError('')
+            setError('');
+
             setBookData(items)
+
+            if (!bookData) {
+                return setisEmpty('No such book exists!')
+            }
         } catch (error) {
             console.log(error);
         }
@@ -101,12 +114,13 @@ const MainComp = () => {
             <h2 style={{ marginTop: '15px', textAlign: 'center', color: 'white' }}>{loading}</h2>
 
 
-            <div className="container">
-                <Card book={bookData} />
+            {!bookData ? (<h1 style={{ marginTop: '15px', textAlign: 'center', color: 'white' }}>{empty}</h1>) : (
+                <div className="container">
+                    <Card book={bookData} />
 
 
 
-            </div>
+                </div>)}
 
         </>
     )
