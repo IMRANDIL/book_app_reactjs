@@ -24,15 +24,21 @@ const MainComp = () => {
 
     const [search, setSearch] = useState('');
     const [bookData, setBookData] = useState([]);
-    const [loading, setLoading] = useState('')
+    const [loading, setLoading] = useState('');
+    const [error, setError] = useState('');
 
 
     const searchBook = async (e) => {
         if (e.key === 'Enter') {
             try {
+
+                if (!search) {
+                    return setError('Please pass the key')
+                }
                 setLoading('Loading...')
                 const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
                 setLoading('')
+                setError('')
                 setBookData(items)
             } catch (error) {
                 console.log(error);
@@ -47,14 +53,26 @@ const MainComp = () => {
 
     const handleClick = async () => {
         try {
+            if (!search) {
+                return setError('Please pass the key')
+            }
             setLoading('Loading...')
             const { data: { items } } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.REACT_APP_KEY}&maxResults=40`);
-            setLoading('')
+            setLoading('');
+            setError('')
             setBookData(items)
         } catch (error) {
             console.log(error);
         }
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -70,8 +88,9 @@ const MainComp = () => {
 
                 <div className="row2">
                     <h2>Find Your Favourite Book</h2>
+                    <h1 style={{ textAlign: 'center', color: 'white', marginBottom: '15px' }}>{error}</h1>
                     <div className="search">
-                        <input type="text" placeholder='Search Your Book...' value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={searchBook} />
+                        <input type="text" placeholder='Search Your Book...' onChange={(e) => setSearch(e.target.value)} onKeyPress={searchBook} />
 
                         <button onClick={handleClick}>{<FcSearch />}</button>
                     </div>
@@ -80,6 +99,8 @@ const MainComp = () => {
             </div>
 
             <h2 style={{ marginTop: '15px', textAlign: 'center', color: 'white' }}>{loading}</h2>
+
+
             <div className="container">
                 <Card book={bookData} />
 
